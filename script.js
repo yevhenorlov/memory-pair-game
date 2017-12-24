@@ -8,16 +8,39 @@
 /////////
 
 const cards = document.querySelectorAll(".card");
-const pairsNum = 8; // values between 1-8, for more values images for cards must be set in style.css
+const groupsNum = 8; // values between 1-8, for more values images for cards must be set in style.css
+const cardsInGroupNum = 2; // how many cards of the same type must be selected
 const isInputEnabled = true;
 
-const generateCardIds = function(pairsNum) {
+const generateCardIds = function(groupsNum, cardsInGroupNum) {
   const IdsArray = [];
-  for (var i = 0; i < pairsNum; i++) {
-    IdsArray.push(i);
+  for (var groupIndex = 0; groupIndex < groupsNum; groupIndex++) {
+    for (var cardInGroupIndex = 0; cardInGroupIndex < cardsInGroupNum; cardInGroupIndex++) {
+      IdsArray.push(groupIndex);
+    }
   }
   return IdsArray;
 };
+
+console.log(generateCardIds(groupsNum, cardsInGroupNum));
+
+const populateCards = function(ShuffledIdsArray) {
+  const cardsContainer = document.querySelector('.cards-container');
+  cardsContainer.innerHTML = "";
+  const content = ShuffledIdsArray.map(val => {
+    return `
+      <div class="card card-${val}">
+          <div class="card-inner">
+              <div class="front"></div>
+              <div class="back"></div>
+          </div>
+      </div>
+    `
+  }).join('');
+  cardsContainer.innerHTML = content;
+};
+
+populateCards(generateCardIds(groupsNum, cardsInGroupNum));
 
 const shuffleCards = function(IdsArray) {
   console.log("shuffle cards");
