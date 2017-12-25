@@ -1,203 +1,203 @@
 body {
-    font-family: "Indie Flower", "Helvetica-Neue", Helvetica, Arial;
-    font-size: 20px;
-    line-height: 1;
-    text-align: center;
-    /* overflow: hidden; */
-    color: #000;
-    background: #fefefe;
-  }
-  
-  a {
-    position: relative;
-    color: steelblue;
-    text-decoration: none;
-    opacity: 0.7;
-    -webkit-transition: opacity 0.3s;
-    -o-transition: opacity 0.3s;
-    transition: opacity 0.3s;
-  }
-  a:after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    -webkit-transform: rotate(-2deg);
-        -ms-transform: rotate(-2deg);
-            transform: rotate(-2deg);
-    width: 100%;
-    height: 1px;
-    background: steelblue;
-  }
-  a:hover {
-    opacity: 1;
-  }
-  
-  .prompt-modal {
-    position: fixed;
-    z-index: 3;
-    top: 50%;
-    left: 50%;
-    padding: 20px 50px 50px;
-    background: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    -webkit-box-shadow: 1px 0 5px 0 rgba(0, 0, 0, 0.08);
-            box-shadow: 1px 0 5px 0 rgba(0, 0, 0, 0.08);
-    border-radius: 5px;
-    -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-    -webkit-transition: opacity 0.3s;
-    -o-transition: opacity 0.3s;
-    transition: opacity 0.3s;
-  }
-  
-  input {
-    width: 100%;
-    height: 20px;
-    padding: 5px;
-    margin: 5px;
-  }
-  
-  .overlay {
-    position: fixed;
-    z-index: 2;
-    background: rgba(0, 0, 0, 1);
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    -webkit-transition: opacity 0.3s;
-    -o-transition: opacity 0.3s;
-    transition: opacity 0.3s;
-  }
-  
-  .hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
-  
-  .cards-container {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    width: 40vw;
-    margin: auto;
-  }
-  .card {
-    margin: 10px;
-    -webkit-perspective: 1000px;
-            perspective: 1000px;
-    cursor: pointer;
-    -webkit-transition: 0.3s;
-    -o-transition: 0.3s;
-    transition: 0.3s;
-  }
-  .card:not(.flipped):not(.solved) .back:hover {
-    -webkit-transform: scale(1.02);
-        -ms-transform: scale(1.02);
-            transform: scale(1.02);
-    border-color: #000;
-  }
-  .card.flipped,
-  .card.card.solved {
-    cursor: default;
-  }
-  .card.flipped .card-inner {
-    -webkit-transform: rotateY(180deg);
-            transform: rotateY(180deg);
-  }
-  .card.solved .card-inner {
-    -webkit-transform: rotateY(180deg) rotateZ(15deg) scale(0.01);
-            transform: rotateY(180deg) rotateZ(15deg) scale(0.01);
-    -webkit-transition: 0.4s;
-    -o-transition: 0.4s;
-    transition: 0.4s;
-  }
-  
-  .card,
-  .front,
-  .back {
-    width: 100px;
-    height: 100px;
-  }
-  
-  .card-inner {
-    -webkit-transition: 0.6s;
-    -o-transition: 0.6s;
-    transition: 0.6s;
-    -webkit-transform-style: preserve-3d;
-            transform-style: preserve-3d;
-    -webkit-transform-origin: center;
-        -ms-transform-origin: center;
-            transform-origin: center;
-    position: relative;
-    height: 100px;
-  }
-  
-  .front,
-  .back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    -webkit-box-shadow: 1px 0 5px 0 rgba(0, 0, 0, 0.08);
-            box-shadow: 1px 0 5px 0 rgba(0, 0, 0, 0.08);
-    border-radius: 5px;
-    overflow: hidden;
-  }
-  
-  .front {
-    z-index: 2;
-    -webkit-transform: rotateY(180deg);
-            transform: rotateY(180deg);
-  }
-  
-  .back {
-    -webkit-transform: rotateY(0deg);
-            transform: rotateY(0deg);
-  }
-  
-  /* pictures */
-  .card .back {
-    background-color: lightblue;
-    -webkit-transition: 0.3s;
-    -o-transition: 0.3s;
-    transition: 0.3s;
-    /* background-image: url('img/cardback.png'); */
-  }
-  .card .front,
-  .card .back {
-    background-size: contain;
-  }
-  .card-0 .front {
-    background-image: url("img/00.png");
-  }
-  .card-1 .front {
-    background-image: url("img/01.png");
-  }
-  .card-2 .front {
-    background-image: url("img/02.png");
-  }
-  .card-3 .front {
-    background-image: url("img/03.png");
-  }
-  .card-4 .front {
-    background-image: url("img/04.png");
-  }
-  .card-5 .front {
-    background-image: url("img/05.png");
-  }
-  .card-6 .front {
-    background-image: url("img/06.png");
-  }
-  .card-7 .front {
-    background-image: url("img/07.png");
-  }
+  font-family: "Indie Flower", "Helvetica-Neue", Helvetica, Arial;
+  font-size: 20px;
+  line-height: 1;
+  text-align: center;
+  /* overflow: hidden; */
+  color: #000;
+  background: #fefefe;
+}
+
+a {
+  position: relative;
+  color: steelblue;
+  text-decoration: none;
+  opacity: 0.7;
+  -webkit-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+a:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  -webkit-transform: rotate(-2deg);
+  -ms-transform: rotate(-2deg);
+  transform: rotate(-2deg);
+  width: 100%;
+  height: 1px;
+  background: steelblue;
+}
+a:hover {
+  opacity: 1;
+}
+
+.prompt-modal {
+  position: fixed;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  padding: 20px 50px 50px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  -webkit-box-shadow: 1px 0 5px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 1px 0 5px 0 rgba(0, 0, 0, 0.08);
+  border-radius: 5px;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+input {
+  width: 100%;
+  height: 20px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.overlay {
+  position: fixed;
+  z-index: 2;
+  background: rgba(0, 0, 0, 1);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  -webkit-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cards-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: 40vw;
+  margin: auto;
+}
+.card {
+  margin: 10px;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+.card:not(.flipped):not(.solved) .back:hover {
+  -webkit-transform: scale(1.02);
+  -ms-transform: scale(1.02);
+  transform: scale(1.02);
+  border-color: #000;
+}
+.card.flipped,
+.card.card.solved {
+  cursor: default;
+}
+.card.flipped .card-inner {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+.card.solved .card-inner {
+  -webkit-transform: rotateY(180deg) rotateZ(15deg) scale(0.01);
+  transform: rotateY(180deg) rotateZ(15deg) scale(0.01);
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.card,
+.front,
+.back {
+  width: 100px;
+  height: 100px;
+}
+
+.card-inner {
+  -webkit-transition: 0.6s;
+  -o-transition: 0.6s;
+  transition: 0.6s;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  position: relative;
+  height: 100px;
+}
+
+.front,
+.back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  -webkit-box-shadow: 1px 0 5px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 1px 0 5px 0 rgba(0, 0, 0, 0.08);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.front {
+  z-index: 2;
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.back {
+  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+}
+
+/* pictures */
+.card .back {
+  background-color: lightblue;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  /* background-image: url('img/cardback.png'); */
+}
+.card .front,
+.card .back {
+  background-size: contain;
+}
+.card-0 .front {
+  background-image: url("img/00.png");
+}
+.card-1 .front {
+  background-image: url("img/01.png");
+}
+.card-2 .front {
+  background-image: url("img/02.png");
+}
+.card-3 .front {
+  background-image: url("img/03.png");
+}
+.card-4 .front {
+  background-image: url("img/04.png");
+}
+.card-5 .front {
+  background-image: url("img/05.png");
+}
+.card-6 .front {
+  background-image: url("img/06.png");
+}
+.card-7 .front {
+  background-image: url("img/07.png");
+}
