@@ -9,56 +9,16 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="cards-container">
-        <div class="card card-0">
-            <div class="card-inner">
-                <div class="front"></div>
-                <div class="back"></div>
-            </div>
-        </div>
-        <div class="card card-1">
-            <div class="card-inner">
-                <div class="front"></div>
-                <div class="back"></div>
-            </div>
-        </div>
-        <div class="card card-2">
-            <div class="card-inner">
-                <div class="front"></div>
-                <div class="back"></div>
-            </div>
-        </div>
-        <div class="card card-3">
-            <div class="card-inner">
-                <div class="front"></div>
-                <div class="back"></div>
-            </div>
-        </div>
-        <div class="card card-4">
-            <div class="card-inner">
-                <div class="front"></div>
-                <div class="back"></div>
-            </div>
-        </div>
-        <div class="card card-5">
-            <div class="card-inner">
-                <div class="front"></div>
-                <div class="back"></div>
-            </div>
-        </div>
-        <div class="card card-6">
-            <div class="card-inner">
-                <div class="front"></div>
-                <div class="back"></div>
-            </div>
-        </div>
-        <div class="card card-7">
-            <div class="card-inner">
-                <div class="front"></div>
-                <div class="back"></div>
-            </div>
-        </div>
+    <div class="prompt-modal">
+        <form action="">
+            <p>Welcome to memory game!</p>
+            <input type="number" id="cardsInGroupNum" placeholder="How many cards in a group? (2-4, default: 2)">
+            <input type="number" id="groupsNum" placeholder="How many different pictures in a set? (2-8, default: 8)">
+            <button type="button" id="startGame" onclick="game.startGame()">Start!</button>
+        </form>
     </div>
+    <div class="overlay"></div>
+    <div class="cards-container"></div>
     <p>Memory pair game by <a href="https://github.com/yevhenorlov/">Yevhen Orlov</a></p>
     <p>Pics: 'Famous Robots' by <a href="https://www.behance.net/DanielNyari" target="_blank">Daniel Nyari</a></p>
 

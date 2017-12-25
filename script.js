@@ -1,10 +1,16 @@
+"use strict";
+
 const game = {
-  groupsNum: 2, // values between 1-8, for more values images for cards must be set in style.css
-  cardsInGroupNum: 3, // how many cards of the same type must be selected
+  groupsNum: 8, // values between 2-8, for more values images for cards must be set in style.css
+  cardsInGroupNum: 2, // how many cards of the same type must be selected (2-4 by default)
   isInputEnabled: true,
   isMatched: null,
   cards: null,
+  promptModal: document.querySelector(".prompt-modal"),
+  overlay: document.querySelector(".overlay"),
   comparisonArray: [], // card values are pushed here to be compared later
+  cardsTotal: this.groupsNum * this.cardsInGroupNum,
+  solvedNum: 0, // check against cardsTotal for win condition
 
   generateCardIds: function(groupsNum, cardsInGroupNum) {
     const idsArray = [];
@@ -72,25 +78,28 @@ const game = {
       game.isMatched = game.checkMatch();
 
       setTimeout(function() {
-        if (!game.isMatched) {
-          game.comparisonArray.forEach(element => {
-            let card = document.querySelectorAll(`.${element}`);
+        game.comparisonArray.forEach(element => {
+          let card = document.querySelectorAll(`.${element}`);
+          if (!game.isMatched) {
             card.forEach(element => element.classList.remove("flipped"));
-          });
-
-          game.comparisonArray = [];
-          game.isInputEnabled = true;
-        } else if (game.isMatched) {
-          game.comparisonArray.forEach(element => {
-            let card = document.querySelectorAll(`.${element}`);
+          } else if (game.isMatched) {
             card.forEach(element => element.classList.add("solved"));
-          });
+          } else {
+            console.log(
+              "Fatal error (game.isMatched must resolve to a boolean value)"
+            );
+            return;
+          }
 
           game.comparisonArray = [];
           game.isInputEnabled = true;
-        }
+        });
+
+        game.solvedNum = document.querySelectorAll('.solved').length;
+        if(game.solvedNum >= game.cardsTotal) game.restartPrompt();
       }, 800);
     }
+
   },
 
   checkMatch: function() {
@@ -108,28 +117,47 @@ const game = {
     });
   },
 
+  hidePrompt: function() {
+    game.promptModal.classList.add("hidden");
+    game.overlay.classList.add("hidden");
+  },
+
+  startGame: function() {
+    let groupsNumVal = document.getElementById("groupsNum").value;
+    let cardsNumVal = document.getElementById("cardsInGroupNum").value;
+
+    if (groupsNumVal >= 2 && groupsNumVal <= 8) {
+      game.groupsNum = groupsNumVal;
+    }
+    if (cardsNumVal >= 2 && cardsNumVal <= 4) {
+      game.cardsInGroupNum = cardsNumVal;
+    }
+
+    game.cardsTotal = game.groupsNum * game.cardsInGroupNum;
+
+    game.init();
+  },
+
+  restartPrompt: function() {
+    const newContent = `
+    <p>Well done! Wanna try again?</p>
+    <button type="button" onclick="game.restartGame()">Sure!</button>
+    `;
+
+    game.promptModal.innerHTML = newContent;
+    game.promptModal.classList.remove('hidden');
+    game.overlay.classList.remove('hidden');
+  },
+
+  restartGame: function() {
+    location.reload(); // cheap and dirty solution for now
+  },
+
   init: function() {
     let idsArray = game.generateCardIds(game.groupsNum, game.cardsInGroupNum);
     let shuffledIdsArray = game.shuffle(idsArray);
     game.populateCards(shuffledIdsArray);
     game.initInterface();
+    game.hidePrompt();
   }
 };
-
-game.init();
-
-// 00 start game, shuffle cards, flush all cards
-
-// 10 on card click, set it to active state, store its id in values array.
-// if values array length > limit, block further input, go to 20.
-
-// 20 compare ids,
-//     if different, flush their states, enable input, goto 10.
-//     if same, set both to solved, goto 30.
-
-// 30 count cards,
-//     if there are cards unsolved, enable input, goto 10.
-//     if no cards unsolved, goto 40.
-
-// 40 game is won, prompt,
-// if restart game, goto 00
