@@ -1,57 +1,122 @@
-// const cards = document.querySelectorAll('.card');
-// cards.forEach(card => {
-//     card.addEventListener('click', function() {
-//         this.classList.toggle('flipped');
-//     });
-// });
+const game = {
+  groupsNum: 2, // values between 1-8, for more values images for cards must be set in style.css
+  cardsInGroupNum: 3, // how many cards of the same type must be selected
+  isInputEnabled: true,
+  isMatched: null,
+  cards: null,
+  comparisonArray: [], // card values are pushed here to be compared later
 
-/////////
-
-const cards = document.querySelectorAll(".card");
-const groupsNum = 8; // values between 1-8, for more values images for cards must be set in style.css
-const cardsInGroupNum = 2; // how many cards of the same type must be selected
-const isInputEnabled = true;
-
-const generateCardIds = function(groupsNum, cardsInGroupNum) {
-  const IdsArray = [];
-  for (var groupIndex = 0; groupIndex < groupsNum; groupIndex++) {
-    for (var cardInGroupIndex = 0; cardInGroupIndex < cardsInGroupNum; cardInGroupIndex++) {
-      IdsArray.push(groupIndex);
+  generateCardIds: function(groupsNum, cardsInGroupNum) {
+    const idsArray = [];
+    for (var groupIndex = 0; groupIndex < groupsNum; groupIndex++) {
+      for (
+        var cardInGroupIndex = 0;
+        cardInGroupIndex < cardsInGroupNum;
+        cardInGroupIndex++
+      ) {
+        idsArray.push(groupIndex);
+      }
     }
+    return idsArray;
+  },
+
+  shuffle: function(o) {
+    for (
+      var j, x, i = o.length;
+      i;
+      j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x
+    );
+    return o;
+  },
+
+  populateCards: function(ShuffledIdsArray) {
+    const cardsContainer = document.querySelector(".cards-container");
+    cardsContainer.innerHTML = "";
+    const content = ShuffledIdsArray.map(val => {
+      return `
+        <div class="card card-${val}">
+            <div class="card-inner">
+                <div class="front"></div>
+                <div class="back"></div>
+            </div>
+        </div>
+      `;
+    }).join("");
+    cardsContainer.innerHTML = content;
+  },
+
+  initInterface: function() {
+    game.cards = document.querySelectorAll(".card");
+
+    game.cards.forEach(card => {
+      card.addEventListener("click", function() {
+        if (
+          this.classList.contains("flipped") ||
+          this.classList.contains("solved")
+        )
+          return;
+        if (game.isInputEnabled) {
+          game.handleClicks(this);
+        }
+      });
+    });
+  },
+
+  handleClicks: function($this) {
+    let id = $this.classList[1]; // second class in the class list is 'card-n'
+    game.comparisonArray.push(id);
+    $this.classList.toggle("flipped");
+
+    if (game.comparisonArray.length >= game.cardsInGroupNum) {
+      game.isInputEnabled = false;
+      game.isMatched = game.checkMatch();
+
+      setTimeout(function() {
+        if (!game.isMatched) {
+          game.comparisonArray.forEach(element => {
+            let card = document.querySelectorAll(`.${element}`);
+            card.forEach(element => element.classList.remove("flipped"));
+          });
+
+          game.comparisonArray = [];
+          game.isInputEnabled = true;
+        } else if (game.isMatched) {
+          game.comparisonArray.forEach(element => {
+            let card = document.querySelectorAll(`.${element}`);
+            card.forEach(element => element.classList.add("solved"));
+          });
+
+          game.comparisonArray = [];
+          game.isInputEnabled = true;
+        }
+      }, 800);
+    }
+  },
+
+  checkMatch: function() {
+    for (let index = 1; index < game.comparisonArray.length; index++) {
+      if (game.comparisonArray[index] !== game.comparisonArray[index - 1]) {
+        return false;
+      }
+    }
+    return true;
+  },
+
+  flushAllCards: function(allCards) {
+    allCards.forEach(card => {
+      card.classList.remove("flipped solved");
+    });
+  },
+
+  init: function() {
+    let idsArray = game.generateCardIds(game.groupsNum, game.cardsInGroupNum);
+    let shuffledIdsArray = game.shuffle(idsArray);
+    game.populateCards(shuffledIdsArray);
+    game.initInterface();
   }
-  return IdsArray;
 };
 
-console.log(generateCardIds(groupsNum, cardsInGroupNum));
-
-const populateCards = function(ShuffledIdsArray) {
-  const cardsContainer = document.querySelector('.cards-container');
-  cardsContainer.innerHTML = "";
-  const content = ShuffledIdsArray.map(val => {
-    return `
-      <div class="card card-${val}">
-          <div class="card-inner">
-              <div class="front"></div>
-              <div class="back"></div>
-          </div>
-      </div>
-    `
-  }).join('');
-  cardsContainer.innerHTML = content;
-};
-
-populateCards(generateCardIds(groupsNum, cardsInGroupNum));
-
-const shuffleCards = function(IdsArray) {
-  console.log("shuffle cards");
-  // implement shuffling
-};
-
-const flushAllCards = function(allCards) {
-  allCards.forEach(card => {
-    card.classList.remove("flipped solved");
-  });
-};
+game.init();
 
 // 00 start game, shuffle cards, flush all cards
 

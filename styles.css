@@ -3,6 +3,7 @@ body{
     font-size: 20px;
     line-height: 1;
     text-align: center;
+    overflow: hidden;
 }
 
 a{
@@ -37,9 +38,18 @@ a:hover{
     perspective: 1000px;
     cursor: pointer;
 }
+.card.flipped,
+.card.card.solved{
+    cursor: default;
+}
 .card.flipped .card-inner{
     transform: rotateY(180deg);
 }
+.card.solved .card-inner{
+    transform: rotateY(180deg) rotateZ(15deg) scale(0.01);
+    transition: 0.4s;
+}
+
 .card,
 .front,
 .back{
@@ -50,7 +60,8 @@ a:hover{
 .card-inner{
     transition: 0.6s;
 	transform-style: preserve-3d;
-	position: relative;
+    position: relative;
+    height: 100px;
 }
 
 .front, .back {
@@ -66,11 +77,11 @@ a:hover{
 
 .front {
 	z-index: 2;
-	transform: rotateY(0deg);
+	transform: rotateY(180deg);
 }
 
 .back {
-	transform: rotateY(180deg);
+	transform: rotateY(0deg);
 }
 
 /* pictures */
