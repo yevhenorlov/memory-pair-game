@@ -111,12 +111,6 @@ const game = {
     return true;
   },
 
-  flushAllCards: function(allCards) {
-    allCards.forEach(card => {
-      card.classList.remove("flipped solved");
-    });
-  },
-
   hidePrompt: function() {
     game.promptModal.classList.add("hidden");
     game.overlay.classList.add("hidden");
