@@ -4,7 +4,6 @@ body {
   font-size: 20px;
   line-height: 1;
   text-align: center;
-  /* overflow: hidden; */
   color: #000;
   background: #fefefe;
 }
@@ -55,20 +54,25 @@ a:hover {
   transition: opacity 0.3s;
 }
 
-.prompt-modal h1{
+.prompt-modal h1 {
   font-size: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 
-.prompt-modal p{
+.prompt-modal p {
   font-size: 14px;
+  margin: 0;
 }
 
-input {
+.prompt-modal input {
   width: 80%;
   height: 20px;
   padding: 5px;
-  margin: 5px;
+  margin: 5px 0 20px;
+}
+
+.prompt-modal button {
+  margin-top: 10px;
 }
 
 .overlay {
@@ -217,13 +221,13 @@ input {
 }
 
 @media all and (max-width: 550px) {
-  body{
+  body {
     font-size: 16px;
   }
-  .prompt-modal{
+  .prompt-modal {
     padding: 10px;
   }
-  .cards-container{
+  .cards-container {
     min-width: 320px;
   }
   .card,
@@ -232,7 +236,7 @@ input {
     width: 50px;
     height: 50px;
   }
-  .card-inner{
+  .card-inner {
     height: 50px;
   }
 }
