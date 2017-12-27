@@ -12,11 +12,14 @@
     <div class="prompt-modal">
         <form action="">
             <h1>Welcome to memory game!</h1>
-            <p>Set number of cards in a group</p>
-            <input type="number" id="cardsInGroupNum" placeholder="(2-4, default: 2)">
-            <p>Set number of pictures in a set</p>
-            <input type="number" id="groupsNum" placeholder="(2-8, default: 8)">
             <button type="button" id="startGame" onclick="game.startGame()">Start!</button>
+            <button type="button" id="settingsBtn" onclick="game.toggleSettings()">Settings</button>
+            <div id="settings">
+                <p>Set number of cards in a group<br>(2-4, default: 2)</p>
+                <input type="number" id="cardsInGroupNum" min="2" max="4" placeholder="2">
+                <p>Set number of pictures in a set<br>(2-8, default: 8)</p>
+                <input type="number" id="groupsNum" min="2" max="8" placeholder="8">
+            </div>
         </form>
     </div>
     <div class="overlay"></div>

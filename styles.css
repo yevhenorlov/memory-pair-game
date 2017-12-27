@@ -56,11 +56,13 @@ a:hover {
 
 .prompt-modal h1 {
   font-size: 20px;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }
 
 .prompt-modal p {
-  font-size: 14px;
+  font-family: "Courier", monospace;
+  font-size: 12px;
+  line-height: 14px;
   margin: 0;
 }
 
@@ -73,6 +75,22 @@ a:hover {
 
 .prompt-modal button {
   margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.prompt-modal #settings {
+  padding-top: 10px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  -webkit-transition: 0.6s;
+  -o-transition: 0.6s;
+  transition: 0.6s;
+}
+
+.prompt-modal #settings.active {
+  max-height: 200px;
+  opacity: 1;
 }
 
 .overlay {

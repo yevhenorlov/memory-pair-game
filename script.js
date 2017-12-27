@@ -116,6 +116,11 @@ const game = {
     game.overlay.classList.add("hidden");
   },
 
+  toggleSettings: function() {
+    let settings = document.getElementById("settings");
+    settings.classList.toggle('active');
+  },
+
   startGame: function() {
     let groupsNumVal = document.getElementById("groupsNum").value;
     let cardsNumVal = document.getElementById("cardsInGroupNum").value;
