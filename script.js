@@ -8,6 +8,7 @@ const game = {
   cards: null,
   promptModal: document.querySelector(".prompt-modal"),
   overlay: document.querySelector(".overlay"),
+  settingsMenu: document.querySelector(".settings-menu"),
   comparisonArray: [], // card values are pushed here to be compared later
   cardsTotal: this.groupsNum * this.cardsInGroupNum,
   solvedNum: 0, // check against cardsTotal for win condition
@@ -117,8 +118,7 @@ const game = {
   },
 
   toggleSettings: function() {
-    let settings = document.getElementById("settings");
-    settings.classList.toggle('active');
+  game.settingsMenu.classList.toggle('active');
   },
 
   startGame: function() {
