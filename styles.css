@@ -116,11 +116,13 @@ a:hover {
   -o-transition: 0.3s;
   transition: 0.3s;
 }
-.card:not(.flipped):not(.solved) .back:hover {
-  -webkit-transform: scale(1.02);
-  -ms-transform: scale(1.02);
-  transform: scale(1.02);
-  border-color: #000;
+@media all and (min-width: 1025px) {
+  .card:not(.flipped):not(.solved) .back:hover {
+    -webkit-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    transform: scale(1.02);
+    border-color: #000;
+  }
 }
 .card.flipped,
 .card.card.solved {
