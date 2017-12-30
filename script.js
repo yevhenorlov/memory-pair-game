@@ -36,10 +36,10 @@ const game = {
     return o;
   },
 
-  populateCards: function(ShuffledIdsArray) {
+  populateCards: function(shuffledIdsArray) {
     const cardsContainer = document.querySelector(".cards-container");
     cardsContainer.innerHTML = "";
-    const content = ShuffledIdsArray.map(val => {
+    const content = shuffledIdsArray.map(val => {
       return `
         <div class="card card-${val}">
             <div class="card-inner">
@@ -81,15 +81,10 @@ const game = {
       setTimeout(function() {
         game.comparisonArray.forEach(element => {
           let card = document.querySelectorAll(`.${element}`);
-          if (!game.isMatched) {
-            card.forEach(element => element.classList.remove("flipped"));
-          } else if (game.isMatched) {
+          if (game.isMatched) {
             card.forEach(element => element.classList.add("solved"));
           } else {
-            console.log(
-              "Fatal error (game.isMatched must resolve to a boolean value)"
-            );
-            return;
+            card.forEach(element => element.classList.remove("flipped"));
           }
 
           game.comparisonArray = [];
