@@ -8,6 +8,7 @@ const game = {
   cards: null,
   promptModal: document.querySelector(".prompt-modal"),
   overlay: document.querySelector(".overlay"),
+  settingsMenu: document.querySelector(".settings-menu"),
   comparisonArray: [], // card values are pushed here to be compared later
   cardsTotal: this.groupsNum * this.cardsInGroupNum,
   solvedNum: 0, // check against cardsTotal for win condition
@@ -35,10 +36,10 @@ const game = {
     return o;
   },
 
-  populateCards: function(ShuffledIdsArray) {
+  populateCards: function(shuffledIdsArray) {
     const cardsContainer = document.querySelector(".cards-container");
     cardsContainer.innerHTML = "";
-    const content = ShuffledIdsArray.map(val => {
+    const content = shuffledIdsArray.map(val => {
       return `
         <div class="card card-${val}">
             <div class="card-inner">
@@ -80,15 +81,10 @@ const game = {
       setTimeout(function() {
         game.comparisonArray.forEach(element => {
           let card = document.querySelectorAll(`.${element}`);
-          if (!game.isMatched) {
-            card.forEach(element => element.classList.remove("flipped"));
-          } else if (game.isMatched) {
+          if (game.isMatched) {
             card.forEach(element => element.classList.add("solved"));
           } else {
-            console.log(
-              "Fatal error (game.isMatched must resolve to a boolean value)"
-            );
-            return;
+            card.forEach(element => element.classList.remove("flipped"));
           }
 
           game.comparisonArray = [];
@@ -111,15 +107,13 @@ const game = {
     return true;
   },
 
-  flushAllCards: function(allCards) {
-    allCards.forEach(card => {
-      card.classList.remove("flipped solved");
-    });
-  },
-
   hidePrompt: function() {
     game.promptModal.classList.add("hidden");
     game.overlay.classList.add("hidden");
+  },
+
+  toggleSettings: function() {
+  game.settingsMenu.classList.toggle('active');
   },
 
   startGame: function() {
